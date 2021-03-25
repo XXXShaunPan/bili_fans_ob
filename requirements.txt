@@ -2,6 +2,5 @@ pycryptodome
 requests
 pandas
 pillow
-colorsys
 arrow
 pytz
