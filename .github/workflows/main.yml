@@ -49,7 +49,7 @@ jobs:
         python3 up_fans_biliob.py
       
     - name: 获取指定数据
-      if: github.event_name != 'schedule'
+      if: github.event_name == 'workflow_dispatch'
       env:
         date_start: ${{ github.event.inputs.date_start }}
         fans_type: ${{ github.event.inputs.fans_type }}
