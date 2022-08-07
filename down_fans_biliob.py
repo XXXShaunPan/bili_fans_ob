@@ -26,8 +26,8 @@ def spider():
 def proc():
 	doc=spider()
 	for i in range(1,22):
-		name,uid=doc('.gap-3:eq(3) .flex-1 div').text().split(' UID: ')
-		cRate=doc('.gap-3:eq(2) .flex-shrink div').text()[1:].replace(',','')
+		name,uid=doc(f'.gap-3:eq({i}) .flex-1 div').text().split(' UID: ')
+		cRate=doc(f'.gap-3:eq({i}) .flex-shrink div').text()[1:].replace(',','')
 		if name not in df.columns:
 			df[name]=[0]*len(df.index)
 			df[name]['mid']=uid
