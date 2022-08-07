@@ -18,20 +18,24 @@ header={
 }
 
 def spider():
-	return rq.get('https://api.biliob.com/rank/fans-increase-rate',headers=header).json()
+	res=rq.get('https://zeroroku.com/bilibili/rank/rate1/desc',headers=header,timeout=(60,60)).text
+	doc=pq(res)
+	return doc
+	
 
 def proc():
-	all_data=spider()
-	data=all_data['content']
-	for i in data:
-		if i['name'] not in df.columns:
-			df[i['name']]=[0]*len(df.index)
-		df[i['name']][time]=i['cRate']
-		df[i['name']]['mid']=i['mid']
-		# if not os.path.exists(f'pic_up_biliob/{i["name"]}.jpg'):
-		# 	with open(f'pic_up_biliob/{i["name"]}.jpg','wb') as f:
+	doc=spider()
+	for i in range(1,22):
+		name,uid=doc('.gap-3:eq(3) .flex-1 div').text().split(' UID: ')
+		cRate=doc('.gap-3:eq(2) .flex-shrink div').text().replace(',','')
+		if name not in df.columns:
+			df[name]=[0]*len(df.index)
+			df[name]['mid']=uid
+		df[name][time]=cRate
+		# if not os.path.exists(f'pic_down_biliob/{i["name"]}.jpg'):
+		# 	with open(f'pic_down_biliob/{i["name"]}.jpg','wb') as f:
 		# 		f.write(rq.get(i['face']).content)
-		print(i['name'])
+		print(name,cRate)
 
 if __name__ == '__main__':
 	
