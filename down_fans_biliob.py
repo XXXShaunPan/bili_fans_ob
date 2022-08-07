@@ -1,7 +1,7 @@
 import requests as rq
 import pandas as pd
 from datetime import datetime
-import arrow
+from pyquery import PyQuery as pq
 import os
 from pytz import timezone
 
@@ -18,16 +18,20 @@ header={
 
 df.loc[time]=[0]*len(df.columns)
 def spider():
-	return rq.get('https://api.biliob233.com/rank/fans-decrease-rate',headers=header,timeout=(60,60)).json()
+	res=rq.get('https://zeroroku.com/bilibili/rank/rate1/asc',headers=header,timeout=(60,60)).text
+	doc=pq(res)
+	return doc
+	
 
 def proc():
-	all_data=spider()
-	data=all_data['content']
-	for i in data:
-		if i['name'] not in df.columns:
-			df[i['name']]=[0]*len(df.index)
-		df[i['name']][time]=abs(i['cRate'])
-		df[i['name']]['mid']=i['mid']
+	doc=spider()
+	for i in range(1,22):
+		name,uid=doc('.gap-3:eq(3) .flex-1 div').text().split(' UID: ')
+		cRate=doc('.gap-3:eq(2) .flex-shrink div').text()[1:].replace(',','')
+		if name not in df.columns:
+			df[name]=[0]*len(df.index)
+		df[name][time]=cRate
+		df[name]['mid']=uid
 		# if not os.path.exists(f'pic_down_biliob/{i["name"]}.jpg'):
 		# 	with open(f'pic_down_biliob/{i["name"]}.jpg','wb') as f:
 		# 		f.write(rq.get(i['face']).content)
