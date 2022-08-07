@@ -30,12 +30,12 @@ def proc():
 		cRate=doc('.gap-3:eq(2) .flex-shrink div').text()[1:].replace(',','')
 		if name not in df.columns:
 			df[name]=[0]*len(df.index)
+			df[name]['mid']=uid
 		df[name][time]=cRate
-		df[name]['mid']=uid
 		# if not os.path.exists(f'pic_down_biliob/{i["name"]}.jpg'):
 		# 	with open(f'pic_down_biliob/{i["name"]}.jpg','wb') as f:
 		# 		f.write(rq.get(i['face']).content)
-		print(i['name'])
+		print(name,cRate)
 
 if __name__ == '__main__':
 	proc()
