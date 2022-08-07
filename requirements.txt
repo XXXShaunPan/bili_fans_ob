@@ -4,3 +4,4 @@ pandas
 pillow
 arrow
 pytz
+pyquery
