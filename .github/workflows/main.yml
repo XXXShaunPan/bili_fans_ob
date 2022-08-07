@@ -69,7 +69,7 @@ jobs:
         
         
     - name: sync github -> gitee
-      if: success()
+      if: github.event_name == 'workflow_dispatch'
       uses: Yikun/hub-mirror-action@master  
 #       if: env.dst_key && env.dst_token && env.gitee_user
       with:
