@@ -19,16 +19,18 @@ header={
 }
 
 def spider():
-	res=rq.get('https://zeroroku.com/bilibili/rank/rate1/desc',headers=header,timeout=(60,60)).text
-	doc=pq(res)
-	return doc
+	res=rq.get('https://zeroroku.com/_next/data/sW-UJcYRbybO0jl2Ul68z/bilibili/rank/rate1/desc.json?field=rate1&order=desc',headers=header,timeout=(60,60)).text
+	return res['pageProps']['data']
 	
 
 def proc():
-	doc=spider()
-	for i in range(1,22):
-		name,uid=doc(f'.gap-3:eq({i}) .flex-1 div').text().split(' UID: ')
-		cRate=doc(f'.gap-3:eq({i}) .flex-shrink div').text().replace(',','')
+	data=spider()
+	for i in data[:21]:
+		name=i['name']
+		uid=i['mid']
+		cRate=i['stats']['rate1']
+# 		name,uid=doc(f'.gap-3:eq({i}) .flex-1 div').text().split(' UID: ')
+# 		cRate=doc(f'.gap-3:eq({i}) .flex-shrink div').text().replace(',','')
 		if name not in df.columns:
 			df[name]=[0]*len(df.index)
 			df[name]['mid']=uid
