@@ -19,7 +19,7 @@ header={
 }
 
 def spider():
-	res=rq.get('https://zeroroku.com/_next/data/sW-UJcYRbybO0jl2Ul68z/bilibili/rank/rate1/desc.json?field=rate1&order=desc',headers=header,timeout=(60,60)).text
+	res=rq.get('https://zeroroku.com/_next/data/sW-UJcYRbybO0jl2Ul68z/bilibili/rank/rate1/desc.json?field=rate1&order=desc',headers=header,timeout=(60,60)).json()
 	return res['pageProps']['data']
 	
 
