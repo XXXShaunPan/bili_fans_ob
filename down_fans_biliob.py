@@ -59,9 +59,9 @@ def proc():
 		print(name,cRate)
 
 if __name__ == '__main__':
-	try:
-		proc()
-	except:
-		proc_json()
+# 	try:
+	proc()
+# 	except:
+# 		proc_json()
 	df=df.drop_duplicates()
 	df.to_csv('bili_fans/down_fans.csv',header=True,index=True)
