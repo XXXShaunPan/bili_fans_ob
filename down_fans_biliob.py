@@ -48,7 +48,8 @@ def proc():
 # 		uid=i['mid']
 # 		cRate=abs(i['stats']['rate1'])
 		doc = pq(data)
-		name,uid=doc(f'.gap-3:eq({i}) .flex-1 div').text().split(' UID: ')
+		uid=doc(f'.gap-3:eq({i}) .flex-1 div').text().replace('UID:','')
+		name = doc(f'.gap-3:eq({i}) .flex-1 a').text()
 		cRate=doc(f'.gap-3:eq({i}) .flex-shrink div').text()[1:].replace(',','')
 		if name not in df.columns:
 			df[name]=[0]*len(df.index)
