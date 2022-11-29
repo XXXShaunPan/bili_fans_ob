@@ -17,7 +17,7 @@ on:
         default: ''
       date_start:
         description: '开始时间 (如03 01 09)'
-        required: true
+        required: false
         default: ''
     
   
