@@ -64,7 +64,7 @@ jobs:
         git config --local user.email "19820637553@163.com"
         git config --local user.name "XXXShaunPan"
         git add .
-        git commit -m "`date '+%Y-%m-%d %H:%M:%S'`"
+        git commit --allow-empty -m "`date '+%Y-%m-%d %H:%M:%S'`"
         git push -u origin main && echo "push ok"
         
         
