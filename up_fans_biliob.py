@@ -19,7 +19,7 @@ header={
 }
 
 def spider_json():
-	res=rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=0',headers=header,timeout=(60,60)).json()
+	res=rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=0&s=30',headers=header,timeout=(60,60)).json()
 	return res
 	
 def spider():
