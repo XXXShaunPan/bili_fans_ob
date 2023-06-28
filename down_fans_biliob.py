@@ -18,7 +18,7 @@ header={
 
 df.loc[time]=[0]*len(df.columns)
 def spider_json():
-	res=rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=1',headers=header,timeout=(60,60)).json()
+	res=rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=1&s=30',headers=header,timeout=(60,60)).json()
 	return res
 	
 def spider():
