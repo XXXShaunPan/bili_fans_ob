@@ -6,3 +6,4 @@ arrow
 pytz
 pyquery
 SQLAlchemy
+pymysql
