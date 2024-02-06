@@ -69,11 +69,11 @@ data = {
 }
 def main():
 	sql = "INSERT INTO ob_fan_data (item_data, item_time, is_down) VALUES (%(item_data)s, %(item_time)s, %(is_down)s)"
-	res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=1&s=30',headers=headers).text
+	res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=1&s=30',headers=header).text
 	data.update({'item_data': res})
 	con.execute(sql, data)
 	sql = "INSERT INTO ob_fan_data (item_data, item_time, is_down) VALUES (%(item_data)s, %(item_time)s, %(is_down)s)"
-	res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=0&s=30',headers=headers).text
+	res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=0&s=30',headers=header).text
 	data.update({'item_data': res, 'is_down': 0})
 	con.execute(sql, data)
 	
