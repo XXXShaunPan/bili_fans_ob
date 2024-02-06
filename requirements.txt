@@ -5,3 +5,4 @@ pillow
 arrow
 pytz
 pyquery
+SQLAlchemy
