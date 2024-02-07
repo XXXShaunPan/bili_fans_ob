@@ -80,7 +80,7 @@ def main():
 	# con.execute(sql, data)
 	for i in range(2):
 		pd.DataFrame(get_fans_data(i)).to_csv(f'{"down" if i else "up"}_fans_data',index=False, mode='a')
-		print(f'{"down" if i else "up"}爬取完成'）
+		print(f'{"down" if i else "up"}爬取完成')
 
 
 if __name__ == '__main__':
