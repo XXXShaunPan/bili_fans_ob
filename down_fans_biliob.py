@@ -69,17 +69,18 @@ data = {
     'item_time': time,
     'is_down': 1
 }
+
+def get_fans_data(option):
+	return rq.get(f'https://api.zeroroku.com/bilibili/rank?f=rate1&o={option}&s=30',headers=header).json()
+
 def main():
-	sql = "INSERT INTO ob_fan_data (item_data, item_time, is_down) VALUES (%(item_data)s, %(item_time)s, %(is_down)s)"
-	res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=1&s=30',headers=header).text
-	data.update({'item_data': res})
-	con.execute(sql, data)
-	sql = "INSERT INTO ob_fan_data (item_data, item_time, is_down) VALUES (%(item_data)s, %(item_time)s, %(is_down)s)"
-	res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=0&s=30',headers=header).text
-	data.update({'item_data': res, 'is_down': 0})
-	con.execute(sql, data)
-	
-	
+	# sql = "INSERT INTO ob_fan_data (item_data, item_time, is_down) VALUES (%(item_data)s, %(item_time)s, %(is_down)s)"
+	# res = rq.get('https://api.zeroroku.com/bilibili/rank?f=rate1&o=1&s=30',headers=header).text
+	# data.update({'item_data': res})
+	# con.execute(sql, data)
+	for i in range(2):
+		pd.DataFrame(get_fans_data(i)).to_csv(f'{"down" if i else "up"}_fans_data',index=False, mode='a')
+		print(f'{"down" if i else "up"}爬取完成'）
 
 
 if __name__ == '__main__':
