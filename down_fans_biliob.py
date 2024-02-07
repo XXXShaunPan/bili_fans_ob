@@ -7,7 +7,7 @@ import os
 from pytz import timezone
 
 time=datetime.now(timezone('Asia/Shanghai')).strftime('%Y-%m-%d::%H')
-con = create_engine('mysql+pymysql://oujiarong:Ul7BRXbzETgjdZd2cbhWbn@39.108.78.157:3306/Win_Dataprocuremen?charset=utf8')
+con = create_engine(f'mysql+pymysql://{user}:{password}@{ip_port}/Win_Dataprocuremen?charset=utf8')
 #df=pd.DataFrame(index=[time])
 # df=pd.read_csv('bili_fans/down_fans.csv',index_col=[0])
 header={
