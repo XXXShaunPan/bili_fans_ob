@@ -21,7 +21,7 @@ on:
         default: ''
     
 env:
-  157_mysql: ${{ secrets.157_mysql }}
+  mysql_157: ${{ secrets.mysql_157 }}
 
 jobs:
   build:
