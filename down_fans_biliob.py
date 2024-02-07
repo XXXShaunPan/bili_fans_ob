@@ -2,7 +2,6 @@ import requests as rq
 import pandas as pd
 from datetime import datetime
 # from pyquery import PyQuery as pq
-from sqlalchemy import create_engine
 import os
 from pytz import timezone
 
