@@ -6,6 +6,8 @@ from sqlalchemy import create_engine
 import os
 from pytz import timezone
 
+ip_port, user, password = eval(os.environ["157_mysql"])
+
 time=datetime.now(timezone('Asia/Shanghai')).strftime('%Y-%m-%d::%H')
 con = create_engine(f'mysql+pymysql://{user}:{password}@{ip_port}/Win_Dataprocuremen?charset=utf8')
 #df=pd.DataFrame(index=[time])
