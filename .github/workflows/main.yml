@@ -20,7 +20,9 @@ on:
         required: false
         default: ''
     
-  
+env:
+  157_mysql: ${{ secrets.157_mysql }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
